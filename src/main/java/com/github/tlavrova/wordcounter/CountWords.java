@@ -10,14 +10,26 @@ public class CountWords {
 		String line = br.readLine();
 		int count = 0;
 		while (line != null){
-			String []space = line.split("");
-			//String []dash = line.split("-");
+			String []space = line.split(" ");
 			for (String w : space){
-				System.out.println(w);
-				count++;
+				String stOnlyLetters = getOnlyLetters(w);
+				if (!stOnlyLetters.isEmpty()){
+					System.out.println(stOnlyLetters);
+					count++;
+				}
 			}
 			line = br.readLine();
 		}
 		System.out.println(count);
+	}
+	
+	public static String getOnlyLetters(String str){
+		String newstr = str.replaceAll("[^А-Яа-яA-Za-z]", "");
+		if (newstr.isEmpty()){
+			return "";
+				
+		}else{
+			return newstr;
+		}
 	}
 }
