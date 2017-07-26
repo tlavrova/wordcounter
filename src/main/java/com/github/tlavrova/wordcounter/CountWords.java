@@ -1,6 +1,4 @@
 package com.github.tlavrova.wordcounter;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.io.File;
@@ -11,31 +9,16 @@ public class CountWords {
 		System.out.println("Counting Words");
 		HashMap<String, Integer> listOfWords = makeWordList();
 		System.out.println(listOfWords);
-//		FileReader fr = new FileReader("C:\\CountWords.txt");
-//		BufferedReader br = new BufferedReader(fr);
-//		String line = br.readLine();
-//		int count = 0;
-//		while (line != null){
-//			String []space = line.split(" ");
-//			for (String w : space){
-//				String stOnlyLetters = getOnlyLetters(w);
-//				if (!stOnlyLetters.isEmpty()){
-//					System.out.println(stOnlyLetters);
-//					count++;
-//				}
-//			}
-//			line = br.readLine();
-//		}
-//		System.out.println(count);
 	}
 	
-	public static String getOnlyLetters(String str){
+	public static String getOnlySmallLetters(String str){
 		String newstr = str.replaceAll("[^А-Яа-яA-Za-z]", "");
-		if (newstr.isEmpty()){
+		String strLowCase = newstr.toLowerCase();
+		if (strLowCase.isEmpty()){
 			return "";
 				
 		}else{
-			return newstr;
+			return strLowCase;
 		}
 	}
 	
@@ -47,7 +30,7 @@ public class CountWords {
 		int countWord = 0;
 		while (scan.hasNextLine()){
 			String word = scan.next();	//scanner automatically uses " " as a delimeter
-			String wordOnlyLetters = getOnlyLetters(word);
+			String wordOnlyLetters = getOnlySmallLetters(word);
 			if (!wordOnlyLetters.isEmpty()){
 				if(!listOfWords.containsKey(wordOnlyLetters)){	//add word if it isn't added already
 					listOfWords.put(wordOnlyLetters, 1);		//first occurance of this word
@@ -60,6 +43,7 @@ public class CountWords {
  				}
 			}
 		}
+		scan.close();
 		return listOfWords;
 	}
 }
