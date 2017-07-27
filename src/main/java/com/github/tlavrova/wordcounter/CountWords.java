@@ -22,9 +22,8 @@ public class CountWords {
 		}
 	}
 	
-	public static HashMap<String, Integer> makeWordList(File filename) throws FileNotFoundException {
-		File text = new File("C:\\CountWords.txt"); 
-		Scanner scan = new Scanner(text);
+	public static HashMap<String, Integer> makeWordList(File filename) throws FileNotFoundException { 
+		Scanner scan = new Scanner(filename);
 		HashMap<String, Integer> listOfWords = new HashMap<String, Integer>();
 		//Scanner scan1 = new Scanner(scan1);
 		int countWord = 0;
