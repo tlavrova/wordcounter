@@ -7,7 +7,8 @@ import java.io.FileNotFoundException;
 public class CountWords {
 	public static void main (String args[]) throws Exception {
 		System.out.println("Counting Words");
-		HashMap<String, Integer> listOfWords = makeWordList();
+		File filename = getFile();
+		HashMap<String, Integer> listOfWords = makeWordList(filename);
 		System.out.println(listOfWords);
 	}
 	
@@ -21,7 +22,7 @@ public class CountWords {
 		}
 	}
 	
-	public static HashMap<String, Integer> makeWordList() throws FileNotFoundException {
+	public static HashMap<String, Integer> makeWordList(File filename) throws FileNotFoundException {
 		File text = new File("C:\\CountWords.txt"); 
 		Scanner scan = new Scanner(text);
 		HashMap<String, Integer> listOfWords = new HashMap<String, Integer>();
@@ -44,5 +45,15 @@ public class CountWords {
 		}
 		scan.close();
 		return listOfWords;
+	}
+	
+	public static File getFile(){
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter a file name: ");
+		System.out.flush();
+		String filename = scanner.nextLine();
+		File file = new File(filename);
+		scanner.close();
+		return file;
 	}
 }
