@@ -1,6 +1,9 @@
 package com.github.tlavrova.wordcounter;
 
 import junit.framework.TestCase;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import com.github.tlavrova.wordcounter.CountWords;
 
 public class CountWordsTest extends TestCase {
@@ -25,12 +28,13 @@ public class CountWordsTest extends TestCase {
 		assertEquals("", strLowCase);		
 	}
 
-	public void testMakeWordList() {
-		fail("Not yet implemented");
+	public void testMakeWordList() throws FileNotFoundException {
+//		File f = new File("C:\\testCountWords.txt");
+//		HashMap<String, Integer> hm = CountWords.makeWordList(f);		
 	}
 
 	public void testGetFile() {
-		fail("Not yet implemented");
+		File f = CountWords.getFile();
+		assertTrue(f.exists());
 	}
-
 }

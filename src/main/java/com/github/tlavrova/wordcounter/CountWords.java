@@ -37,7 +37,6 @@ public class CountWords {
 				else {
 					countWord = listOfWords.get(wordOnlyLetters) + 1;	//get current count and increment
 					//now put the new value back in the HashMap
-					listOfWords.remove(wordOnlyLetters);			//first remove it (can't have duplicate keys)
 					listOfWords.put(wordOnlyLetters, countWord);	//now put it back with new value
  				}
 			}
