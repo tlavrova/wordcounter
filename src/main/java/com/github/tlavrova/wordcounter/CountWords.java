@@ -7,8 +7,10 @@ import java.io.FileNotFoundException;
 public class CountWords {
 	public static void main (String args[]) throws Exception {
 		System.out.println("Counting Words");
-		File filename = getFile();
-		HashMap<String, Integer> listOfWords = makeWordList(filename);
+//		File filename = getFile();
+		String filename = args[0];
+		File inputFile = new File(filename);
+		HashMap<String, Integer> listOfWords = makeWordList(inputFile);
 		System.out.println(listOfWords);
 	}
 	
@@ -22,12 +24,12 @@ public class CountWords {
 		}
 	}
 	
-	public static HashMap<String, Integer> makeWordList(File filename) throws FileNotFoundException { 
-		Scanner scan = new Scanner(filename);
+	public static HashMap<String, Integer> makeWordList(File inputFile) throws FileNotFoundException { 
+		Scanner scan = new Scanner(inputFile);
 		HashMap<String, Integer> listOfWords = new HashMap<String, Integer>();
 		//Scanner scan1 = new Scanner(scan1);
 		int countWord = 0;
-		while (scan.hasNextLine()) {
+		while (scan.hasNext()) {
 			String word = scan.next();	//scanner automatically uses " " as a delimeter
 			String wordOnlyLetters = getOnlySmallLetters(word);
 			if (!wordOnlyLetters.isEmpty()) {
