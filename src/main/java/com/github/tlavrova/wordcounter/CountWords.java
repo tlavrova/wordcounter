@@ -1,16 +1,26 @@
 package com.github.tlavrova.wordcounter;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 public class CountWords {
 	public static void main (String args[]) throws Exception {
 		System.out.println("Counting Words");
-//		File filename = getFile();
-		String filename = args[0];
-		File inputFile = new File(filename);
-		HashMap<String, Integer> listOfWords = makeWordList(inputFile);
+		InputStream stream;
+		if (args.length == 0) {
+			stream = System.in;
+		} else {
+			String filename = args[0];
+			File inputFile = new File(filename);
+			stream = new FileInputStream(inputFile);
+		}
+		HashMap<String, Integer> listOfWords = makeWordList(stream);
 		System.out.println(listOfWords);
 	}
 	
@@ -24,8 +34,8 @@ public class CountWords {
 		}
 	}
 	
-	public static HashMap<String, Integer> makeWordList(File inputFile) throws FileNotFoundException { 
-		Scanner scan = new Scanner(inputFile);
+	public static HashMap<String, Integer> makeWordList(InputStream stream) throws FileNotFoundException { 
+		Scanner scan = new Scanner(stream);
 		HashMap<String, Integer> listOfWords = new HashMap<String, Integer>();
 		//Scanner scan1 = new Scanner(scan1);
 		int countWord = 0;
